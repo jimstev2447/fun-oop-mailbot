@@ -145,5 +145,22 @@ describe("Robot", () => {
         testFunc.mockRestore();
       });
     });
+    describe("pickUp()", () => {
+      test("takes an object and add its to parcels array", () => {
+        const hobbiton = new Village();
+        const mailBot = new Robot(hobbiton);
+        const parcel = { address: "Pippins House" };
+        mailBot.pickUp(parcel);
+        expect(mailBot.parcels).toEqual([{ address: "Pippins House" }]);
+      });
+      test("adds multiple parcels in a single invocation", () => {
+        const hobbiton = new Village();
+        const mailBot = new Robot(hobbiton);
+        const parcel1 = { address: "Pippins House" };
+        const parcel2 = { address: "Bilbos House" };
+        mailBot.pickUp(parcel);
+        expect(mailBot.parcels).toEqual([{ address: "Pippins House" }]);
+      });
+    });
   });
 });

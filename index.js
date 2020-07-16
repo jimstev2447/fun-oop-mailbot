@@ -46,5 +46,8 @@ function Robot(village, location = "Post Office") {
       console.log(`MailBot cant move from ${this.location} to ${locationName}`);
     }
   };
+  Robot.prototype.pickUp = function (parcel) {
+    this.parcels.push(parcel);
+  };
 }
 module.exports = { Building, Village, Robot };

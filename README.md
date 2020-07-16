@@ -57,3 +57,30 @@ MyVillage.roads; // -----> [[{ address:'Jims House', mailbox:[]}, { address:'Mit
 ```js
 MyVillage.pathsFrom("Jims House"); //-----> ['Shop', 'Mitches House']
 ```
+
+### Robot
+
+- Each robot will have a village property in which they will navigate
+- They will also have a location and a parcels property
+- They will have a move method which will:
+
+  Take a location address and update the robots location.
+
+  Not change the location if there is no path to that location available.
+
+  Log an appropriate message if the robot has successfully moved.
+
+  Log an appropriate message if they are unable to move.
+
+- Will have a pickUp method that can be invoked with multiple parcels and store them in the robots parcel storage
+- Will have a deliver method which will:
+
+  Return any parcels that are addressed to the robots current location
+
+  Remove them from its parcels storage
+
+  log a message of how many(including none) parcels have been delivered to the location
+
+## Advanced task
+
+Write an autoDrive method for the robot that will, once laden with parcels continue moving through the village delivering parcels until it has none left then find its way back to the Post Office

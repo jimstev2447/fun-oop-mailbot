@@ -46,8 +46,21 @@ function Robot(village, location = "Post Office") {
       console.log(`MailBot cant move from ${this.location} to ${locationName}`);
     }
   };
-  Robot.prototype.pickUp = function (parcel) {
-    this.parcels.push(parcel);
+  Robot.prototype.pickUp = function (...parcels) {
+    parcels.forEach((parcel) => {
+      this.parcels.push(parcel);
+    });
+  };
+  Robot.prototype.deliver = function () {
+    const leftoverParcels = this.parcels.filter(
+      ({ address }) => this.location !== address
+    );
+    console.log(
+      `MailBot delivered ${
+        this.parcels.length - leftoverParcels.length
+      } parcel at ${this.location}`
+    );
+    this.parcels = [...leftoverParcels];
   };
 }
 module.exports = { Building, Village, Robot };

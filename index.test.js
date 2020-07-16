@@ -158,8 +158,47 @@ describe("Robot", () => {
         const mailBot = new Robot(hobbiton);
         const parcel1 = { address: "Pippins House" };
         const parcel2 = { address: "Bilbos House" };
+        mailBot.pickUp(parcel1, parcel2);
+        expect(mailBot.parcels).toEqual([
+          { address: "Pippins House" },
+          { address: "Bilbos House" },
+        ]);
+      });
+    });
+    describe("deliver()", () => {
+      test("if the robot has a parcel addressed to the current location will remove the parcel from its parcels", () => {
+        const hobbiton = new Village();
+        const mailBot = new Robot(hobbiton);
+        const parcel = { address: "Post Office" };
         mailBot.pickUp(parcel);
-        expect(mailBot.parcels).toEqual([{ address: "Pippins House" }]);
+        mailBot.deliver();
+        expect(mailBot.parcels).toEqual([]);
+      });
+      test("will only remove the parcel from the current location", () => {
+        const hobbiton = new Village();
+        const mailBot = new Robot(hobbiton);
+        const parcel = { address: "Post Office" };
+        const parcel2 = { address: "Aadils House" };
+        mailBot.pickUp(parcel, parcel2);
+        mailBot.deliver();
+        expect(mailBot.parcels).toEqual([{ address: "Aadils House" }]);
+      });
+      test("will console log how many parcels have been delivered at the current location", () => {
+        const testFunc = jest.spyOn(console, "log");
+        const hobbiton = new Village();
+        const mailBot = new Robot(hobbiton);
+        const parcel = { address: "Post Office" };
+        const parcel2 = { address: "Aadils House" };
+        mailBot.pickUp(parcel, parcel2);
+        mailBot.deliver();
+        expect(testFunc).toHaveBeenCalledWith(
+          "MailBot delivered 1 parcel at Post Office"
+        );
+        mailBot.deliver();
+        expect(testFunc).toHaveBeenCalledWith(
+          "MailBot delivered 0 parcel at Post Office"
+        );
+        testFunc.mockRestore();
       });
     });
   });

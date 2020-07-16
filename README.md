@@ -84,3 +84,7 @@ MyVillage.pathsFrom("Jims House"); //-----> ['Shop', 'Mitches House']
 ## Advanced task
 
 Write an autoDrive method for the robot that will, once laden with parcels continue moving through the village delivering parcels until it has none left then find its way back to the Post Office
+
+### Finished
+
+once you have finished all the tasks you can run the game by running `node game.js`

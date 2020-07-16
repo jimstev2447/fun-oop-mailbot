@@ -14,3 +14,4 @@ const paths = [
   ["Aadils House", "Post Office"],
   ["Aadils House", "Cabin"],
 ];
+module.exports = { paths };

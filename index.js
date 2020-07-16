@@ -37,5 +37,14 @@ function Robot(village, location = "Post Office") {
   this.village = village;
   this.location = location;
   this.parcels = [];
+  Robot.prototype.move = function (locationName) {
+    const avaliableLocations = this.village.pathsFrom(this.location);
+    if (avaliableLocations.includes(locationName)) {
+      console.log(`MailBot moved from ${this.location} to ${locationName}`);
+      this.location = locationName;
+    } else {
+      console.log(`MailBot cant move from ${this.location} to ${locationName}`);
+    }
+  };
 }
 module.exports = { Building, Village, Robot };

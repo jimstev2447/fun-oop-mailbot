@@ -75,7 +75,7 @@ MyVillage.pathsFrom("Jims House"); //-----> ['Shop', 'Mitches House']
 - Will have a pickUp method that can be invoked with multiple parcels and store them in the robots parcel storage
 - Will have a deliver method which will:
 
-  Return any parcels that are addressed to the robots current location
+  Add any parcels that are addressed to the robots current location to that locations mailbox
 
   Remove them from its parcels storage
 

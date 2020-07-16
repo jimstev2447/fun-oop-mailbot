@@ -1,5 +1,6 @@
 function Building(name) {
   this.name = name;
+  this.mailbox = [];
 }
 function Village() {
   this.buildings = [];
@@ -38,8 +39,8 @@ function Robot(village, location = "Post Office") {
   this.location = location;
   this.parcels = [];
   Robot.prototype.move = function (locationName) {
-    const avaliableLocations = this.village.pathsFrom(this.location);
-    if (avaliableLocations.includes(locationName)) {
+    const availableLocations = this.village.pathsFrom(this.location);
+    if (availableLocations.includes(locationName)) {
       console.log(`MailBot moved from ${this.location} to ${locationName}`);
       this.location = locationName;
     } else {
@@ -55,6 +56,17 @@ function Robot(village, location = "Post Office") {
     const leftoverParcels = this.parcels.filter(
       ({ address }) => this.location !== address
     );
+    const parcelsToDeliver = this.parcels.filter(
+      ({ address }) => this.location === address
+    );
+    if (parcelsToDeliver.length >= 1) {
+      const building = this.village.buildings.find(
+        ({ name }) => this.location === name
+      );
+      parcelsToDeliver.forEach((parcel) => {
+        building.mailbox.push(parcel);
+      });
+    }
     console.log(
       `MailBot delivered ${
         this.parcels.length - leftoverParcels.length

@@ -5,6 +5,10 @@ describe("Building", () => {
     const house = new Building("Jims House");
     expect(house.name).toBe("Jims House");
   });
+  test("buildings have a mailbox", () => {
+    const house = new Building("Jims House");
+    expect(house.mailbox).toEqual([]);
+  });
 });
 
 describe("Village", () => {
@@ -28,7 +32,9 @@ describe("Village", () => {
         const bilboHouse = new Building("Bilbo's House");
         const hobbiton = new Village();
         hobbiton.addBuilding(bilboHouse);
-        expect(hobbiton.buildings).toEqual([{ name: "Bilbo's House" }]);
+        expect(hobbiton.buildings).toEqual([
+          { name: "Bilbo's House", mailbox: [] },
+        ]);
         const frodoHouse = new Building("Frodo's House");
         hobbiton.addBuilding(frodoHouse);
         expect(hobbiton.buildings[1]).toBe(frodoHouse);
@@ -52,8 +58,8 @@ describe("Village", () => {
         hobbiton.addBuilding(frodoHouse);
         hobbiton.addPath("Bilbo's House", "Frodo's House");
         expect(hobbiton.paths[0]).toEqual([
-          { name: "Bilbo's House" },
-          { name: "Frodo's House" },
+          { name: "Bilbo's House", mailbox: [] },
+          { name: "Frodo's House", mailbox: [] },
         ]);
         expect(hobbiton.paths[0][0]).toBe(bilboHouse);
         expect(hobbiton.paths[0][1]).toBe(frodoHouse);
@@ -168,14 +174,19 @@ describe("Robot", () => {
     describe("deliver()", () => {
       test("if the robot has a parcel addressed to the current location will remove the parcel from its parcels", () => {
         const hobbiton = new Village();
+        const postOffice = new Building("Post Office");
+        hobbiton.addBuilding(postOffice);
         const mailBot = new Robot(hobbiton);
         const parcel = { address: "Post Office" };
         mailBot.pickUp(parcel);
         mailBot.deliver();
         expect(mailBot.parcels).toEqual([]);
+        expect(postOffice.mailbox[0]).toBe(parcel);
       });
       test("will only remove the parcel from the current location", () => {
         const hobbiton = new Village();
+        const postOffice = new Building("Post Office");
+        hobbiton.addBuilding(postOffice);
         const mailBot = new Robot(hobbiton);
         const parcel = { address: "Post Office" };
         const parcel2 = { address: "Aadils House" };
@@ -186,6 +197,8 @@ describe("Robot", () => {
       test("will console log how many parcels have been delivered at the current location", () => {
         const testFunc = jest.spyOn(console, "log");
         const hobbiton = new Village();
+        const postOffice = new Building("Post Office");
+        hobbiton.addBuilding(postOffice);
         const mailBot = new Robot(hobbiton);
         const parcel = { address: "Post Office" };
         const parcel2 = { address: "Aadils House" };

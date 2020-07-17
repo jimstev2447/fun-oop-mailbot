@@ -1,5 +1,5 @@
 const { Village, Building } = require("../index");
-const { buildings, paths } = require("../data/test");
+const { buildings, paths } = require("./data/test");
 const testVillage = new Village();
 buildings.forEach((building) => {
   const newBuilding = new Building(building);

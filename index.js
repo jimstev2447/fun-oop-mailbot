@@ -4,21 +4,21 @@ function Building(name) {
 }
 function Village() {
   this.buildings = [];
-  this.paths = [];
+  this.roads = [];
 
   Village.prototype.addBuilding = function (building) {
     this.buildings.push(building);
   };
-  Village.prototype.addPath = function (name1, name2) {
+  Village.prototype.addRoad = function (name1, name2) {
     const building1 = this.buildings.find(({ name }) => name === name1);
     const building2 = this.buildings.find(({ name }) => name === name2);
     const path = [building1, building2];
 
-    this.paths.push(path);
+    this.roads.push(path);
   };
   Village.prototype.pathsFrom = function (locationName) {
     const location = this.buildings.find(({ name }) => name === locationName);
-    const pathsIncludingLocation = this.paths.filter(
+    const pathsIncludingLocation = this.roads.filter(
       ([building1, building2]) => {
         return location === building1 || location === building2;
       }

@@ -17,9 +17,9 @@ describe("Village", () => {
       const hobbiton = new Village();
       expect(hobbiton.buildings).toEqual([]);
     });
-    test("returns with a paths prop that begins as an empty obj", () => {
+    test("returns with a roads prop that begins as an empty obj", () => {
       const hobbiton = new Village();
-      expect(hobbiton.paths).toEqual([]);
+      expect(hobbiton.roads).toEqual([]);
     });
   });
   describe("Methods", () => {
@@ -40,15 +40,15 @@ describe("Village", () => {
         expect(hobbiton.buildings[1]).toBe(frodoHouse);
       });
     });
-    describe("addPath()", () => {
+    describe("addRoad()", () => {
       test("adds an array to the villagers paths array", () => {
         const hobbiton = new Village();
         const bilboHouse = new Building("Bilbo's House");
         const frodoHouse = new Building("Frodo's House");
         hobbiton.addBuilding(bilboHouse);
         hobbiton.addBuilding(frodoHouse);
-        hobbiton.addPath("Bilbo's House", "Frodo's House");
-        expect(Array.isArray(hobbiton.paths[0])).toBe(true);
+        hobbiton.addRoad("Bilbo's House", "Frodo's House");
+        expect(Array.isArray(hobbiton.roads[0])).toBe(true);
       });
       test("the added array contains the correct buildings", () => {
         const hobbiton = new Village();
@@ -56,13 +56,13 @@ describe("Village", () => {
         const frodoHouse = new Building("Frodo's House");
         hobbiton.addBuilding(bilboHouse);
         hobbiton.addBuilding(frodoHouse);
-        hobbiton.addPath("Bilbo's House", "Frodo's House");
-        expect(hobbiton.paths[0]).toEqual([
+        hobbiton.addRoad("Bilbo's House", "Frodo's House");
+        expect(hobbiton.roads[0]).toEqual([
           { name: "Bilbo's House", mailbox: [] },
           { name: "Frodo's House", mailbox: [] },
         ]);
-        expect(hobbiton.paths[0][0]).toBe(bilboHouse);
-        expect(hobbiton.paths[0][1]).toBe(frodoHouse);
+        expect(hobbiton.roads[0][0]).toBe(bilboHouse);
+        expect(hobbiton.roads[0][1]).toBe(frodoHouse);
       });
     });
     describe("pathsFrom()", () => {
@@ -80,11 +80,11 @@ describe("Village", () => {
         const frodoHouse = new Building("Frodo's House");
         hobbiton.addBuilding(bilboHouse);
         hobbiton.addBuilding(frodoHouse);
-        hobbiton.addPath("Bilbo's House", "Frodo's House");
+        hobbiton.addRoad("Bilbo's House", "Frodo's House");
         expect(hobbiton.pathsFrom("Bilbo's House")).toEqual(["Frodo's House"]);
         const pippinHouse = new Building("Pippin's House");
         hobbiton.addBuilding(pippinHouse);
-        hobbiton.addPath("Pippin's House", "Bilbo's House");
+        hobbiton.addRoad("Pippin's House", "Bilbo's House");
         expect(hobbiton.pathsFrom("Bilbo's House")).toEqual([
           "Frodo's House",
           "Pippin's House",

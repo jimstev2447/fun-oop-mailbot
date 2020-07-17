@@ -13,7 +13,7 @@ In day 2 of this sprint you should re-factor your code to make use of ES6 classe
 Before we start it would be useful to know that the Village instance you will be creating is an implementation of a [graph](https://www.tutorialspoint.com/data_structures_algorithms/graph_data_structure.htm) data structure.
 This can be thought of in a similar way to a village in that we have buildings(nodes/vertices) that are connected by roads(paths/edges)
 
-![Graph](./graph.png)
+![Graph](./assets/graph.png)
 
 Here there is a Post Office building connected to the Shop by a road which is connected to Both houses, which are connected to each other.
 

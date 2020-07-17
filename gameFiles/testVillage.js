@@ -6,7 +6,7 @@ buildings.forEach((building) => {
   testVillage.addBuilding(newBuilding);
 });
 paths.forEach(([building1, building2]) => {
-  testVillage.addPath(building1, building2);
+  testVillage.addRoad(building1, building2);
 });
 
 module.exports = { testVillage };

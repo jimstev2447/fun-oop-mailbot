@@ -16,6 +16,7 @@ function Game() {
   ];
   this.village = testVillage;
   this.robot = new Robot(testVillage);
+  this.robot.location = "Post Office";
   const parcels = [
     { address: "Aadils House" },
     { address: "Cabin" },

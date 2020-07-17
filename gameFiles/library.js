@@ -1,5 +1,5 @@
 const readline = require("readline");
-const { testVillage } = require("../testVillage");
+const { testVillage } = require("./testVillage");
 const { Robot } = require("../index");
 const rl = readline.createInterface({
   input: process.stdin,

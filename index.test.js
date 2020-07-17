@@ -115,14 +115,14 @@ describe("Robot", () => {
   describe("methods", () => {
     describe("move()", () => {
       test("changes the robots current location to the new string", () => {
-        const { testVillage } = require("./testVillage");
+        const { testVillage } = require("./gameFiles/testVillage.js");
         const mailBot = new Robot(testVillage);
         expect(mailBot.location).toBe("Post Office");
         mailBot.move("Market");
         expect(mailBot.location).toBe("Market");
       });
       test("will not change the location if there is no path available from the current location", () => {
-        const { testVillage } = require("./testVillage");
+        const { testVillage } = require("./gameFiles/testVillage.js");
         const mailBot = new Robot(testVillage);
         expect(mailBot.location).toBe("Post Office");
         mailBot.move("Gretes House");
@@ -132,7 +132,7 @@ describe("Robot", () => {
       });
       test("will call the console.log with a message saying the robot has moved", () => {
         const testFunc = jest.spyOn(console, "log");
-        const { testVillage } = require("./testVillage");
+        const { testVillage } = require("./gameFiles/testVillage");
         const mailBot = new Robot(testVillage);
         mailBot.move("Aadils House");
         expect(testFunc).toHaveBeenCalledWith(
@@ -142,7 +142,7 @@ describe("Robot", () => {
       });
       test("when called with an invalid destination will console.log message", () => {
         const testFunc = jest.spyOn(console, "log");
-        const { testVillage } = require("./testVillage");
+        const { testVillage } = require("./gameFiles/testVillage");
         const mailBot = new Robot(testVillage);
         mailBot.move("Cabin");
         expect(testFunc.mock.calls[0][0]).toBe(
